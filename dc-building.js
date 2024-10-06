@@ -58,5 +58,5 @@
     setInterval(() => {
         updateMapTiles();
         updateRoadImage();
-    }, 5000);  // Chaque 5000 millisecondes (5 secondes)
+    }, 5000);  // Chaque 5000 millisecondes (5 secondes). Partie à retravailler car potentillement couteuse en ressources ??
 })();
