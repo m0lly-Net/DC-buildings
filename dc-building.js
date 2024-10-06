@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         DreadCast City Redux
+// @name         DC City Redux
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  Amélioration graphique de la ville de Dreadcast
@@ -12,8 +12,8 @@
     'use strict';
 
     // URL du nouveau fichier .gif avec les bâtiments et routes personnalisés
-    const newBuildingGif = 'https://dc-buldings.netlify.app/buildings/carte_batiments.gif';
-    const newRoadGif = 'https://dc-buldings.netlify.app/buildings/carte_rues_s1.gif';
+    const newBuildingGif = 'https://dc-buldings.netlify.app/carte_batiments.gif';
+    const newRoadGif = 'https://dc-buldings.netlify.app/carte_rues_s1.gif';
 
     // Fonction pour changer l'image des batiments
     const updateMapTiles = () => {
