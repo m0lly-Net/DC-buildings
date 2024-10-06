@@ -37,6 +37,7 @@
 
 
     // FIX POUR EVITER QUE LES IMAGES DE BASES NE VIENNENT ECRASER LES IMAGES CUSTOM (lors des entrée/sorties de batiment par exemple)
+    // Partie à retravailler car potentillement couteuse en ressources (??)
 
     // Observer pour détecter les modifications du DOM
     const observer = new MutationObserver((mutations) => {
@@ -58,5 +59,5 @@
     setInterval(() => {
         updateMapTiles();
         updateRoadImage();
-    }, 5000);  // Chaque 5000 millisecondes (5 secondes). Partie à retravailler car potentillement couteuse en ressources ??
+    }, 5000);  // Chaque 5000 millisecondes (5 secondes).
 })();
