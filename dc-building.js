@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DC City Redux
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Amélioration graphique de la ville de Dreadcast
 // @author       M0lly
 // @match        https://www.dreadcast.net/Main
@@ -11,53 +11,41 @@
 (function() {
     'use strict';
 
-    // URL du nouveau fichier .gif avec les bâtiments et routes personnalisés
+    // URL des fichiers .gif avec les bâtiments personnalisés
     const newBuildingGif = 'https://dc-buldings.netlify.app/carte_batiments.gif';
     const newRoadGif = 'https://dc-buldings.netlify.app/carte_rues_s1.gif';
 
-    // Fonction pour changer l'image des batiments
-    const updateMapTiles = () => {
-        const mapCases = document.querySelectorAll('.case_map');
-        mapCases.forEach(caseElement => {
-            caseElement.style.backgroundImage = `url(${newBuildingGif})`;
+    //Fonction updateImages() pour remplacer à la fois les lignes avec la classe .case_map (pour les batiments) et la div avec l'url de la map des rues du S1
+    const updateImages = () => {
+        document.querySelectorAll('.case_map').forEach(el => {
+            el.style.backgroundImage = `url(${newBuildingGif})`;
         });
-    };
-
-    // Fonction pour changer l'image des routes
-    const updateRoadImage = () => {
-        const roadDivs = document.querySelectorAll('div[style*="images/carte/carte_rues_s1.png"]');
-        roadDivs.forEach(div => {
+        document.querySelectorAll('div[style*="images/carte/carte_rues_s1.png"]').forEach(div => {
             div.style.backgroundImage = `url(${newRoadGif})`;
         });
     };
 
-    // Application initiale des modifications
-    updateMapTiles();
-    updateRoadImage();
+    // Initialisaton de l'update des images au lancement du script
+    updateImages();
 
-
-    // FIX POUR EVITER QUE LES IMAGES DE BASES NE VIENNENT ECRASER LES IMAGES CUSTOM (lors des entrée/sorties de batiment par exemple)
-    // Partie à retravailler car potentillement couteuse en ressources (??)
-
-    // Observer pour détecter les modifications du DOM
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                updateMapTiles();
-                updateRoadImage();
+    // Creation d'un MutationObserver pour catch les changements du DOM.
+    const observer = new MutationObserver(mutations => {
+        let shouldUpdate = false;
+        for (let mutation of mutations) {
+            if (mutation.addedNodes.length > 0) {
+                shouldUpdate = true;
+                break;
             }
-        });
+        }
+        if (shouldUpdate) updateImages();
     });
 
-    // Options de configuration de l'observer
-    const config = { attributes: true, childList: true, subtree: true };
+    observer.observe(document.body, { childList: true, subtree: true });
 
-    // Démarrage de l'observation
-    observer.observe(document.body, config);
-
-    // Réappliquer les modifications à intervalles réguliers pour garantir la persistance
-    setInterval(() => {
-        updateMapTiles();
-        updateRoadImage();
-    }, 5000);  // Chaque 5000 millisecondes (5 secondes).
+    // Optionally use requestAnimationFrame for more frequent DOM updates
+    // const updateLoop = () => {
+    //     updateImages();
+    //     requestAnimationFrame(updateLoop);
+    // };
+    // requestAnimationFrame(updateLoop);
 })();
