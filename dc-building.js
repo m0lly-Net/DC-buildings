@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DC City Redux
 // @namespace    http://tampermonkey.net/
-// @version      0.1.1
+// @version      0.1.2
 // @description  Amélioration graphique de la ville de Dreadcast
 // @author       M0lly
 // @match        https://www.dreadcast.net/Main
@@ -50,5 +50,3 @@
     // };
     // requestAnimationFrame(updateLoop);
 })();
-
-// Test update Grasy Fork
