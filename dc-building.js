@@ -42,7 +42,7 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Optionally use requestAnimationFrame for more frequent DOM updates
+    // 
     // const updateLoop = () => {
     //     updateImages();
     //     requestAnimationFrame(updateLoop);
