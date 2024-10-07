@@ -6,6 +6,7 @@
 // @author       M0lly
 // @match        https://www.dreadcast.net/Main
 // @grant        none
+// @license https://github.com/m0lly-Net/DC-buildings/README.md
 // ==/UserScript==
 
 (function() {
