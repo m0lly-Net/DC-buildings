@@ -9,14 +9,12 @@
 // @license      A definir
 // ==/UserScript==
 
-// TEST UPDATE FORK
-
 (function() {
     'use strict';
 
     // URL des fichiers .gif avec les bâtiments personnalisés
-    const newBuildingGif = 'https://dc-buldings.netlify.app/carte_batiments.gif';
-    const newRoadGif = 'https://dc-buldings.netlify.app/carte_rues_s1.png';
+    const newBuildingGif = './carte_batiments.gif';
+    const newRoadGif = './carte_rues_s1.png';
 
     //Fonction updateImages() pour remplacer à la fois les lignes avec la classe .case_map (pour les batiments) et la div avec l'url de la map des rues du S1
     const updateImages = () => {
