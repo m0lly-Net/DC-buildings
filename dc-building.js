@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         DC City Redux
 // @namespace    http://tampermonkey.net/
-// @version      0.1.4
+// @version      0.1.5
 // @description  Amélioration graphique de la ville de Dreadcast
 // @author       M0lly
 // @match        https://www.dreadcast.net/Main
@@ -25,29 +25,17 @@
             div.style.backgroundImage = `url(${newRoadGif})`;
         });
     };
-
     // Initialisaton de l'update des images au lancement du script
     updateImages();
 
-    // Creation d'un MutationObserver pour catch les changements du DOM.
+    //Fonction observer pour effectuer un "refresh" de l'image si des mutations sont observées (lors des entrées/sorties de batiments par exemple)
     const observer = new MutationObserver(mutations => {
-        let shouldUpdate = false;
-        for (let mutation of mutations) {
-            if (mutation.addedNodes.length > 0) {
-                shouldUpdate = true;
-                break;
-            }
-        }
+        // Utilise `some` pour vérifier si au moins une mutation a ajouté des nœuds
+        const shouldUpdate = mutations.some(mutation => mutation.addedNodes.length > 0);
+        // Si shouldUpdate = true, on lance la fonction updateImages()
         if (shouldUpdate) updateImages();
     });
-
+    
     observer.observe(document.body, { childList: true, subtree: true });
-
-    // 
-    // const updateLoop = () => {
-    //     updateImages();
-    //     requestAnimationFrame(updateLoop);
-    // };
-    // requestAnimationFrame(updateLoop);
 })();
 
