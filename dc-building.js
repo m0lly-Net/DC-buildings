@@ -29,7 +29,8 @@
     // Initialisaton de l'update des images au lancement du script.
     updateImages();
     
-    // Observer pour vérifier si au moins une mutation a ajouté des nœuds. Si la const shouldUpdate = true alors on lance la fonction updateImages() pour refresh les images.
+    // Observer pour vérifier si au moins une mutation a ajouté des nœuds. 
+    // Si la const 'shouldUpdate = true' alors on relance la fonction updateImages() pour refresh les images. (utile lors des entrées/sorties de batiments.)
     const observer = new MutationObserver(mutations => {
         const shouldUpdate = mutations.some(mutation => mutation.addedNodes.length > 0);     
         if (shouldUpdate) updateImages();
