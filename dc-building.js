@@ -25,17 +25,15 @@
             div.style.backgroundImage = `url(${newRoadGif})`;
         });
     };
+
     // Initialisaton de l'update des images au lancement du script
     updateImages();
-
-    //Fonction observer pour effectuer un "refresh" de l'image si des mutations sont observées (lors des entrées/sorties de batiments par exemple)
+    
+    // Observer pour vérifier si au moins une mutation a ajouté des nœuds. Si la const shouldUpdate = true alors on lance la fonction updateImages() pour refresh les images.
     const observer = new MutationObserver(mutations => {
-        // Utilise `some` pour vérifier si au moins une mutation a ajouté des nœuds
-        const shouldUpdate = mutations.some(mutation => mutation.addedNodes.length > 0);
-        // Si shouldUpdate = true, on lance la fonction updateImages()
+        const shouldUpdate = mutations.some(mutation => mutation.addedNodes.length > 0);     
         if (shouldUpdate) updateImages();
     });
-    
+
     observer.observe(document.body, { childList: true, subtree: true });
 })();
-
