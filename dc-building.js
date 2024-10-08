@@ -2,7 +2,7 @@
 // @name         DC City Redux
 // @namespace    http://tampermonkey.net/
 // @version      0.1.6
-6// @description  Amélioration graphique de la ville de Dreadcast
+// @description  Amélioration graphique de la ville de Dreadcast
 // @author       M0lly | Pelagia/Isilin |
 // @match        https://www.dreadcast.net/Main
 // @grant        none
