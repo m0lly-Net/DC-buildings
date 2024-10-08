@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         DC City Redux
 // @namespace    http://tampermonkey.net/
-// @version      0.1.6
+// @version      0.1.7
 // @description  Amélioration graphique de la ville de Dreadcast
-// @author       M0lly | Pelagia/Isilin |
+// @author       M0lly
 // @match        https://www.dreadcast.net/Main
 // @grant        none
 // @license      A definir
@@ -26,7 +26,7 @@
         });
     };
 
-    // Initialisaton de l'update des images au lancement du script
+    // Initialisaton de l'update des images au lancement du script.
     updateImages();
     
     // Observer pour vérifier si au moins une mutation a ajouté des nœuds. Si la const shouldUpdate = true alors on lance la fonction updateImages() pour refresh les images.
